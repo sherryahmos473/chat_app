@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   static String id = 'RegisterPage';
 
@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
               key: formKey,
               child: ListView(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Image.asset(
                     logo,
                     height: 150,
@@ -54,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   const Row(
                     children: [
                       Text(
@@ -66,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   CustomTextFromfield(
                     hintText: 'Email',
                     pass: false,
@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       email = data;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   CustomTextFromfield(
                     hintText: 'Password',
                     pass: true,
@@ -91,7 +91,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           setState(() {});
                           try {
                             await registerUser();
-                            Navigator.pushNamed(context, ChatPage.id,arguments: email);
+                            Navigator.pushNamed(context, ChatPage.id,
+                                arguments: email);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'weak-password') {
                               showSnackBar(context,

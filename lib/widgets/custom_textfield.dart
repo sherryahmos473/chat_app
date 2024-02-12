@@ -14,7 +14,7 @@ class CustomTextFromfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: pass!,
+      obscureText: pass,
       validator: (data) {
         if (data!.isEmpty) {
           return 'Please enter some text';

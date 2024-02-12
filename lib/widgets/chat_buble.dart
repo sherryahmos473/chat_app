@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class ChatBuble extends StatelessWidget {
   const ChatBuble({
-    Key? key,
+    super.key,
     required this.message,
-  }) : super(key: key);
+  });
 
   final Message message;
   @override
@@ -14,20 +14,36 @@ class ChatBuble extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(8),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(30),
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30)),
             color: primaryColor,
           ),
-          child: Text(
-            message.message,
-            style: TextStyle(
-              color: Colors.white,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                message.message,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize:18,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                message.date,
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontSize: 14,
+                ),
+              ),
+            ],
           )),
     );
   }
@@ -35,9 +51,9 @@ class ChatBuble extends StatelessWidget {
 
 class ChatBubleForFriend extends StatelessWidget {
   const ChatBubleForFriend({
-    Key? key,
+    super.key,
     required this.message,
-  }) : super(key: key);
+  });
 
   final Message message;
   @override
@@ -45,20 +61,32 @@ class ChatBubleForFriend extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-          padding: EdgeInsets.all(16),
-          margin: EdgeInsets.all(8),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(16),
+          margin: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 topLeft: Radius.circular(30),
                 topRight: Radius.circular(30)),
             color: Color(0xff006388),
           ),
-          child: Text(
-            message.message,
-            style: TextStyle(
-              color: Colors.white,
-            ),
+          child: Column(
+            children: [
+              Text(
+                message.message,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize:18,
+                ),
+              ),
+              Text(
+                message.date,
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.5),
+                  fontSize: 14,
+                ),
+              ),
+            ],
           )),
     );
   }

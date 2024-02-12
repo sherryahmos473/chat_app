@@ -3,22 +3,22 @@ import 'package:chat_app/model/message.dart';
 import 'package:chat_app/widgets/chat_buble.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class ChatPage extends StatelessWidget {
+
   static String id = 'ChatPage';
-
   final _controller = ScrollController();
-
   CollectionReference messages =
       FirebaseFirestore.instance.collection(messageCollection);
-
-  TextEditingController Controler = TextEditingController();
+  TextEditingController controler = TextEditingController();
+  
   ChatPage({super.key});
   @override
   Widget build(BuildContext context) {
     String email = ModalRoute.of(context)!.settings.arguments as String;
     return StreamBuilder<QuerySnapshot>(
-        stream: messages.orderBy(kCreatedat, descending: true).snapshots(),
+        stream: messages.orderBy(kCreatedate, descending: true).snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<Message> messagesList = [];
@@ -61,14 +61,15 @@ class ChatPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextField(
-                      controller: Controler,
+                      controller: controler,
                       onSubmitted: (data) {
                         messages.add({
                           kMessage: data,
-                          kCreatedat: DateTime.now(),
+                          kCreatedate:
+                              DateFormat('MM:HH').format(DateTime.now()),
                           'id': email,
                         });
-                        Controler.clear();
+                        controler.clear();
                         _controller.animateTo(
                           0,
                           duration: const Duration(milliseconds: 300),

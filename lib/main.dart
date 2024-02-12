@@ -21,7 +21,7 @@ class Chatty extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        LoginPage.id: (context) => LoginPage(),
+        LoginPage.id: (context) => const LoginPage(),
         RegisterPage.id: (context) => RegisterPage(),
         ChatPage.id: (context) => ChatPage(),
       },

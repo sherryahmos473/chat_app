@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   static String id = 'loginPage';
 
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               key: formKey,
               child: ListView(
                 children: [
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Image.asset(
                     logo,
                     height: 150,
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   const Row(
                     children: [
                       Text(
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   CustomTextFromfield(
                     hintText: 'Email',
                     pass: false,
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                       email = data;
                     },
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   CustomTextFromfield(
                     hintText: 'Password',
                     pass: true,
@@ -91,7 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                           setState(() {});
                           try {
                             await loginUser();
-                            Navigator.pushNamed(context, ChatPage.id, arguments: email);
+                            Navigator.pushNamed(context, ChatPage.id,
+                                arguments: email);
                           } on FirebaseAuthException catch (e) {
                             if (e.code == 'user-not-found') {
                               showSnackBar(
