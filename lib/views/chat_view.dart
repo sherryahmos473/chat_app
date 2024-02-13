@@ -12,7 +12,7 @@ class ChatPage extends StatelessWidget {
   CollectionReference messages =
       FirebaseFirestore.instance.collection(messageCollection);
   TextEditingController controler = TextEditingController();
-  
+
   ChatPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -52,9 +52,13 @@ class ChatPage extends StatelessWidget {
                           return messagesList[index].id == email
                               ? ChatBuble(
                                   message: messagesList[index],
+                                  color: primaryColor,
+                                  index: 1,
                                 )
-                              : ChatBubleForFriend(
+                              : ChatBuble(
                                   message: messagesList[index],
+                                  color: const Color(0xff006388),
+                                  index: 2,
                                 );
                         }),
                   ),

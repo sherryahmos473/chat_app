@@ -22,7 +22,7 @@ class Chatty extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         LoginPage.id: (context) => const LoginPage(),
-        RegisterPage.id: (context) => RegisterPage(),
+        RegisterPage.id: (context) => const RegisterPage(),
         ChatPage.id: (context) => ChatPage(),
       },
       initialRoute: LoginPage.id,
