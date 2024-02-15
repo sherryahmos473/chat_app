@@ -15,24 +15,22 @@ class ChatBuble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BorderRadius borderRadius;
+    Alignment alignment;
+
     if (index == 1) {
       borderRadius = const BorderRadius.only(
         bottomLeft: Radius.circular(25),
         topLeft: Radius.circular(25),
         topRight: Radius.circular(25),
       );
+      alignment = Alignment.centerRight;
     } else {
       borderRadius = const BorderRadius.only(
         bottomRight: Radius.circular(25),
         topLeft: Radius.circular(25),
         topRight: Radius.circular(25),
       );
-    }
-    Alignment alignment;
-    if (index == 2) {
       alignment = Alignment.centerLeft;
-    } else {
-      alignment = Alignment.centerRight;
     }
     return Align(
       alignment: alignment,
@@ -54,9 +52,13 @@ class ChatBuble extends StatelessWidget {
                 ),
               ),
               Text(
-                message.date,
+                message.date[11] +
+                    message.date[12] +
+                    message.date[13] +
+                    message.date[14] +
+                    message.date[15],
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.5),
+                  color: Colors.white.withOpacity(0.7),
                   fontSize: 14,
                 ),
               ),

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFromfield extends StatelessWidget {
-  const CustomTextFromfield({
-    super.key,
-    required this.hintText,
-    this.onChanged,
-  });
-
+class CustomPassTextField extends StatefulWidget {
+  const CustomPassTextField(
+      {super.key, required this.hintText, this.onChanged});
   final String hintText;
   final Function(String)? onChanged;
+  @override
+  State<CustomPassTextField> createState() => _CustomPassTextFieldState();
+}
+
+class _CustomPassTextFieldState extends State<CustomPassTextField> {
+  bool pass = true;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: pass,
       validator: (data) {
         if (data!.isEmpty) {
           return 'Please enter some text';
@@ -20,9 +23,9 @@ class CustomTextFromfield extends StatelessWidget {
         return null;
       },
       style: const TextStyle(color: Colors.white),
-      onChanged: onChanged,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.hintText,
         hintStyle:
             TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 16),
         enabledBorder: const OutlineInputBorder(
@@ -33,6 +36,17 @@ class CustomTextFromfield extends StatelessWidget {
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xffD56C04)),
+        ),
+        suffixIcon: IconButton(
+          onPressed: () {
+            setState(() {
+              pass = !pass;
+            });
+          },
+          icon: Icon(
+            pass ? Icons.visibility : Icons.visibility_off,
+            color: Colors.white,
+          ),
         ),
       ),
     );
