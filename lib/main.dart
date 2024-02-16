@@ -1,6 +1,5 @@
-import 'package:chat_app/cubit/cubit/chat_cubit.dart';
-import 'package:chat_app/cubit/login_cubit.dart';
-import 'package:chat_app/cubit/register_cubit.dart';
+import 'package:chat_app/cubit/auth/auth_cubit_.dart';
+import 'package:chat_app/cubit/chat/chat_cubit.dart';
 import 'package:chat_app/views/chat_view.dart';
 import 'package:chat_app/views/login_view.dart';
 import 'package:chat_app/views/register_view.dart';
@@ -24,8 +23,7 @@ class Chatty extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LoginCubit()),
-        BlocProvider(create: (context) => RegisterCubit()),
+        BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ChatCubit()),
       ],
       child: MaterialApp(
