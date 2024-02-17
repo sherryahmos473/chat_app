@@ -1,3 +1,5 @@
+import 'package:chat_app/blocs/auth/auth_bloc.dart';
+import 'package:chat_app/blocs/simple_bloc_observer.dart';
 import 'package:chat_app/cubit/auth/auth_cubit_.dart';
 import 'package:chat_app/cubit/chat/chat_cubit.dart';
 import 'package:chat_app/views/chat_view.dart';
@@ -13,7 +15,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const Chatty());
+  BlocOverrides.runZoned(() {
+    runApp(const Chatty());
+  }, blocObserver: SimpleBlocObserver());
 }
 
 class Chatty extends StatelessWidget {
@@ -25,6 +29,7 @@ class Chatty extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => ChatCubit()),
+        BlocProvider(create: (context) => AuthBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
