@@ -18,6 +18,7 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     String email = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,25 +27,18 @@ class ChatPage extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ),
+              child: const Icon(Icons.arrow_back),
             ),
             const Spacer(flex: 1),
             Image.asset(logo, height: 50, width: 50),
-            const Text(
-              'Chat',
-              style: TextStyle(color: Colors.white),
-            ),
+            const Text('Chat'),
             const Spacer(flex: 1),
             GestureDetector(
               onTap: () {
                 Navigator.pushNamed(context, LoginPage.id);
                 FirebaseAuth.instance.signOut();
               },
-              child: const Text('logout',
-                  style: TextStyle(color: Colors.white, fontSize: 14)),
+              child: const Text('logout', style: TextStyle(fontSize: 14)),
             ),
           ],
         ),
@@ -82,32 +76,49 @@ class ChatPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: controler,
-              onSubmitted: (data) {
-                controler.clear();
-                _controller.animateTo(
-                  0,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOut,
-                );
-              },
-              decoration: InputDecoration(
-                hintText: 'Type a message',
-                suffixIcon: const Icon(
-                  Icons.send,
-                  color: primaryColor,
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: controler,
+                    decoration: InputDecoration(
+                      hintText: 'Type a message',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      //filled: true, // Set to true
+                      //fillColor: Colors.transparent,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide:
+                            const BorderSide(width: 2, color: primaryColor),
+                      ),
+                    ),
+                  ),
                 ),
-                //filled: true, // Set to true
-                //fillColor: Colors.transparent,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
+                IconButton(
+                  icon: const Icon(
+                    Icons.send,
+                    color: primaryColor,
+                  ),
+                  onPressed: () {
+                    String data = controler.text.trim();
+                    if (data.isNotEmpty) {
+                      BlocProvider.of<ChatCubit>(context).sendMessage(
+                        message: data,
+                        email: email,
+                      );
+                      controler.clear();
+                      _controller.animateTo(
+                        0,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeOut,
+                      );
+                    }
+                  },
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(width: 2, color: primaryColor),
-                ),
-              ),
+              ],
             ),
           ),
         ],

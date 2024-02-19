@@ -54,7 +54,6 @@ class RegisterPage extends StatelessWidget {
                           Text(
                             'Scholar Chat',
                             style: TextStyle(
-                                color: Colors.white,
                                 fontSize: 32,
                                 fontFamily: 'Pacifico'),
                           ),
@@ -66,7 +65,6 @@ class RegisterPage extends StatelessWidget {
                           Text(
                             'Register',
                             style: TextStyle(
-                              color: Colors.white,
                               fontSize: 24,
                             ),
                           ),
@@ -102,7 +100,6 @@ class RegisterPage extends StatelessWidget {
                           const Text(
                             'Don\'t have an account ?',
                             style: TextStyle(
-                              color: Colors.white,
                               fontSize: 16,
                             ),
                           ),

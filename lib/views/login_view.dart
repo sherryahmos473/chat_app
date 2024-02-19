@@ -55,7 +55,6 @@ class LoginPage extends StatelessWidget {
                         Text(
                           'Scholar Chat',
                           style: TextStyle(
-                              color: Colors.white,
                               fontSize: 32,
                               fontFamily: 'Pacifico'),
                         ),
@@ -67,7 +66,6 @@ class LoginPage extends StatelessWidget {
                         Text(
                           'login',
                           style: TextStyle(
-                            color: Colors.white,
                             fontSize: 24,
                           ),
                         ),
@@ -103,7 +101,6 @@ class LoginPage extends StatelessWidget {
                         const Text(
                           'Don\'t have an account ?',
                           style: TextStyle(
-                            color: Colors.white,
                             fontSize: 16,
                           ),
                         ),

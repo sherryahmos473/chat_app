@@ -19,7 +19,6 @@ class CustomTextFromfield extends StatelessWidget {
         }
         return null;
       },
-      style: const TextStyle(color: Colors.white),
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,

@@ -22,7 +22,6 @@ class _CustomPassTextFieldState extends State<CustomPassTextField> {
         }
         return null;
       },
-      style: const TextStyle(color: Colors.white),
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         hintText: widget.hintText,
@@ -45,7 +44,6 @@ class _CustomPassTextFieldState extends State<CustomPassTextField> {
           },
           icon: Icon(
             pass ? Icons.visibility : Icons.visibility_off,
-            color: Colors.white,
           ),
         ),
       ),
